@@ -1,0 +1,5 @@
+[user]
+	name = Jordi Beltran 
+	email = beltrachi@gmail.com
+[core]
+	excludesfile = /home/jbeltran/.gitignore
