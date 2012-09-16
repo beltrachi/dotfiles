@@ -5,4 +5,3 @@ alias glog='git log'
 alias gco='git checkout'
 alias gbr='git branch'
 alias gitk='gitk --all'
-
