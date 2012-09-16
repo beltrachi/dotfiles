@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# bootstrap installs things.
+if [[ `grep dotfiles ~/.bashrc` == "" ]]; then
+  echo "source ~/.dotfiles/load.sh" >> ~/.bashrc
+  source ~/.dotfiles/load.sh
+fi
+
+# Run the install (I'd like to pull this out of rake, eventually)
+rake install
