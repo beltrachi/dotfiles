@@ -1,6 +1,6 @@
 # dotfiles
 
-Based (but not forked) on https://github.com/holman/dotfiles without the zsh dependency.
+Based on (but not forked) https://github.com/holman/dotfiles without the zsh dependency.
 
 ## install
 
