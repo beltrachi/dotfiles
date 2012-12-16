@@ -1,0 +1,7 @@
+Git completion script has been extracted from:
+
+https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+
+To update it:
+wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+mv git-completion.bash git-completion.sh
