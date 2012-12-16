@@ -3,6 +3,7 @@
 # bootstrap installs things.
 if [[ `grep dotfiles ~/.bashrc` == "" ]]; then
   echo "source ~/.dotfiles/load.sh" >> ~/.bashrc
+  echo "source ~/.dotfiles/load.sh" >> ~/.bash_profile
   source ~/.dotfiles/load.sh
 fi
 
