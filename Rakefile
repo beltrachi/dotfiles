@@ -2,7 +2,7 @@ require 'rake'
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
-  linkables = Dir.glob('*/**{.symlink}')
+  linkables = Dir.glob('*/**{.symlink}') + Dir.glob('*/**/**{.symlink}')
 
   skip_all = false
   overwrite_all = false
@@ -12,7 +12,8 @@ task :install do
     overwrite = false
     backup = false
 
-    file = linkable.split('/').last.split('.symlink').last
+    # Remove folder and .symlink. It supports files inside folders like ".vagrant.d/Vagrantfile"
+    file = linkable.split('/')[1..-1].join("/").split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
     if File.exists?(target) || File.symlink?(target)
@@ -36,9 +37,10 @@ end
 
 task :uninstall do
 
-  Dir.glob('**/*.symlink').each do |linkable|
+  linkables = Dir.glob('*/**{.symlink}') + Dir.glob('*/**/**{.symlink}')
+  linkables.each do |linkable|
 
-    file = linkable.split('/').last.split('.symlink').last
+    file = linkable.split('/')[1..-1].join("/").split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
     # Remove all symlinks created during installation
