@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # bootstrap installs things.
+echo "Installing source hook on profile and rc..."
 if [[ `grep dotfiles ~/.bashrc` == "" ]]; then
   echo "source ~/.dotfiles/load.sh" >> ~/.bashrc
   echo "source ~/.dotfiles/load.sh" >> ~/.bash_profile
@@ -9,7 +10,10 @@ fi
 
 # Run the install (I'd like to pull this out of rake, eventually)
 WHICH_RAKE=`which rake`
-if [ -n "$WHICH_RAKE" ] && [! -f ~/.dotfiles_installed ]; then
+if [ -n "$WHICH_RAKE" ] && [ ! -f ~/.dotfiles_installed ]; then
+  echo "Installing dotfiles..."
   rake install && touch ~/.dotfiles_installed
+else
+  echo "Warning: No rake detected. Deferring installation."
 fi
 
