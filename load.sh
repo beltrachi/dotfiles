@@ -1,5 +1,5 @@
 #!/bin/bash
-if [! -f ~/.dotfiles_installed ]; then
+if [ ! -f ~/.dotfiles_installed ]; then
     ~/.dotfiles/script/bootstrap
 fi
 
