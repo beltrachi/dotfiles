@@ -8,6 +8,11 @@ task :install do
   overwrite_all = false
   backup_all = false
 
+  def run command
+    puts "Running command: #{command}" if verbose
+    `#{command}`
+  end
+
   linkables.each do |linkable|
     overwrite = false
     backup = false
@@ -15,7 +20,7 @@ task :install do
     # Remove folder and .symlink. It supports files inside folders like ".vagrant.d/Vagrantfile"
     file = linkable.split('/')[1..-1].join("/").split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
-
+    
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
         puts "File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
@@ -29,9 +34,9 @@ task :install do
         end
       end
       FileUtils.rm_rf(target) if overwrite || overwrite_all
-      `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
+      run("mv \"$HOME/.#{file}\" \"$HOME/.#{file}.backup\"") if backup || backup_all
     end
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    run("ln -s \"$PWD/#{linkable}\" \"#{target}\"") unless skip_all
   end
 end
 
