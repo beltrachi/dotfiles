@@ -1,0 +1,33 @@
+(load (expand-file-name "~/.emacs.d/package.el"))
+
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; http://stackoverflow.com/questions/7302771/dotfiles-repository-switching-from-per-package-git-submodules-to-elpa-while-mai
+(defvar prelude-packages
+  '(projectile flx-ido clojure-mode coffee-mode deft gist haml-mode
+                 haskell-mode magit markdown-mode paredit sass-mode scss-mode
+                 yaml-mode yari yasnippet)
+  "A list of packages to ensure are installed at launch.")
+
+(dolist (p prelude-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+
+(projectile-global-mode)
+
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
+
+(global-set-key (kbd "M-p") 'projectile-find-file)
