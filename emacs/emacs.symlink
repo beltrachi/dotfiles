@@ -3,6 +3,8 @@
 (add-to-list 'package-archives 
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;;; Install required packages
@@ -11,18 +13,17 @@
 
 ;; http://stackoverflow.com/questions/7302771/dotfiles-repository-switching-from-per-package-git-submodules-to-elpa-while-mai
 (defvar prelude-packages
-  '(projectile flx-ido clojure-mode coffee-mode deft gist haml-mode
+  '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
-                 yaml-mode yari yasnippet color-theme color-theme-solarized)
+                 yaml-mode yari yasnippet color-theme color-theme-solarized
+                 helm fiplr)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-
-;; For textmate like file search together with projectile
-(projectile-global-mode)
+;; For textmate like file search together
 (require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
@@ -46,8 +47,8 @@
 (require 'color-theme-solarized)
 (color-theme-solarized-dark)
 
-;; Projectile hotkey
-(global-set-key (kbd "M-p") 'projectile-find-file)
+;; Smart file open hotkey - fiplr
+(global-set-key (kbd "M-p") 'fiplr-find-file)
 
 ;; Backup config
 (setq
@@ -77,3 +78,6 @@
 ;; No lock files. Useless if you edit with other editors or so.
 ;; for emacs >= 24.3
 (setq create-lockfiles nil)
+
+;; Helm setup
+(helm-mode 1)
