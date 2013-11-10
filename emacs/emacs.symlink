@@ -1,6 +1,4 @@
-;;;; Config for Emacs v.23
 ;;; Package manager setup
-(load (expand-file-name "~/.emacs.d/package.el"))
 (require 'package)
 (add-to-list 'package-archives 
     '("marmalade" .
@@ -31,6 +29,18 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+
+;; Ugly patch to make color-theme-solarized emacs24 comaptible
+(defun plist-to-alist (the-plist)
+  (defun get-tuple-from-plist (the-plist)
+    (when the-plist
+      (cons (car the-plist) (cadr the-plist))))
+
+  (let ((alist '()))
+    (while the-plist
+      (add-to-list 'alist (get-tuple-from-plist the-plist))
+      (setq the-plist (cddr the-plist)))
+  alist))
 
 ;; Themes
 (require 'color-theme-solarized)
