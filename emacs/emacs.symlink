@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr)
+                 helm fiplr diff-hl)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -81,3 +81,7 @@
 
 ;; Helm setup
 (helm-mode 1)
+
+;; Diff hl config
+(setq global-diff-hl-mode t)
+(setq diff-hl-mode t)
