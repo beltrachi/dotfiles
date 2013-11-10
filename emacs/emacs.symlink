@@ -85,3 +85,6 @@
 ;; Diff hl config
 (setq global-diff-hl-mode t)
 (setq diff-hl-mode t)
+
+
+(setq-default indent-tabs-mode nil)
