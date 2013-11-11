@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr diff-hl)
+                 helm fiplr diff-hl yard-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -84,6 +84,9 @@
 
 ;; Helm setup
 (helm-mode 1)
+
+;; Yard setting
+(add-hook 'ruby-mode-hook 'yard-mode)
 
 ;; Diff hl config
 (setq global-diff-hl-mode t)
