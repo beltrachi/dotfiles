@@ -61,6 +61,9 @@
    version-control t)       ; use versioned backups
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
+;; Do not add newlines at the end!
+(setq require-final-newline nil) 
+(setq mode-require-final-newline nil)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
