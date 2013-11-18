@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr diff-hl yard-mode)
+                 helm fiplr diff-hl yard-mode column-marker)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -30,6 +30,18 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+
+;; General config
+(size-indication-mode t) ;; Show file size along with file position
+(line-number-mode t)	 ;; Show file position in (row, col) format
+(column-number-mode t)	 ;; ''
+(display-time-mode)      ;; Show current time in status line
+(setq-default indent-tabs-mode nil ;; Insert tabs as spaces (not tabs)
+	      indicate-buffer-boundaries 'left	;; Graphical gimmick
+	      indicate-empty-lines t	;; Graphical gimmick
+	      show-trailing-whitespace t
+	      initial-major-mode 'text-mode
+	      default-major-mode 'text-mode)
 
 ;; Ugly patch to make color-theme-solarized emacs24 comaptible
 (defun plist-to-alist (the-plist)
@@ -113,3 +125,21 @@
  ;'(markdown-open-command "/Users/loeffler/bin/mark")
 )
 
+;; Ruby settings
+(add-to-list 'auto-mode-alist '("\\.rep\\'" . ruby-mode))
+
+;; Column marker
+(require 'column-marker)
+(set-face-background 'column-marker-1 "yellow")
+(dolist (hook '(emacs-lisp-mode-hook
+                cperl-mode-hook
+                shell-mode-hook
+                text-mode-hook
+                change-log-mode-hook
+                makefile-mode-hook
+                message-mode-hook
+                ruby-mode-hook
+                texinfo-mode-hook))
+  (add-hook hook (lambda ()
+                   (interactive)
+                   (column-marker-1 81))))
