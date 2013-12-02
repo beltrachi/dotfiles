@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 # First arg is password length
 LEN = (ARGV[0] || 16).to_i
 txt = ""
