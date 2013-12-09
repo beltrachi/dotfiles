@@ -143,3 +143,18 @@
   (add-hook hook (lambda ()
                    (interactive)
                    (column-marker-1 81))))
+
+;; Adapt font size to window size
+(defun fontify-frame (frame)
+  (interactive)
+  (if window-system
+      (progn
+        (if (> (x-display-pixel-width) 1400)
+            (set-frame-parameter frame 'font "Monospace 10") ;; Cinema Display
+         (set-frame-parameter frame 'font "Monospace 9")))))
+
+;; Fontify current frame
+(fontify-frame nil)
+
+;; Fontify any future frames
+(push 'fontify-frame after-make-frame-functions)
