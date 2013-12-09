@@ -158,3 +158,6 @@
 
 ;; Fontify any future frames
 (push 'fontify-frame after-make-frame-functions)
+
+;; Hide toolbar
+(tool-bar-mode -1)
