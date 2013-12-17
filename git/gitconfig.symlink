@@ -5,3 +5,24 @@
 	excludesfile = ~/.gitignore
 [branch]
 	autosetuprebase = always
+[color]
+        status = auto
+        diff = auto
+        branch = auto
+        interactive = auto
+[alias]
+        st = status
+        ci = commit
+        co = checkout
+        staged = diff --cached
+        unstaged = diff
+        both = diff HEAD
+        oneline = log --pretty=oneline
+        amend = commit --amend
+        ff = merge --ff-only
+        pull = pull --ff-only
+        clone = clone --recursive
+        rain = "!f(){ git commit --allow-empty-message -m \"${*:- }\"; };f"
+        ignore = update-index --assume-unchanged --
+        unignore = update-index --no-assume-unchanged --
+        ignored = "!git ls-files -v | grep --colour '^[a-z]'"
