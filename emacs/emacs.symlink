@@ -150,7 +150,7 @@
   (if window-system
       (progn
         (if (> (x-display-pixel-width) 1400)
-            (set-frame-parameter frame 'font "Monospace 10") ;; Cinema Display
+            () ;; Leave as is
          (set-frame-parameter frame 'font "Monospace 9")))))
 
 ;; Fontify current frame
