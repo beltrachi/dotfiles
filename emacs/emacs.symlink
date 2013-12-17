@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr diff-hl yard-mode column-marker)
+                 helm fiplr diff-hl yard-mode column-marker yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -161,3 +161,10 @@
 
 ;; Hide toolbar
 (tool-bar-mode -1)
+
+;;Yasnippet config
+(require 'yasnippet)
+(setq yas-snippet-dirs (append yas-snippet-dirs
+                               '("~/.emacs.d/snippets")))
+
+(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
