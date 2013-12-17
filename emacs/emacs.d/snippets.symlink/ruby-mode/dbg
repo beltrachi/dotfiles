@@ -1,0 +1,4 @@
+# name: debugger 
+# key: dbg
+# --
+require "ruby-debug"; debugger; 2+2
