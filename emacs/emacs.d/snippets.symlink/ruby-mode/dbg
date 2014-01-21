@@ -1,4 +1,10 @@
-# name: debugger 
+# -*- mode: snippet -*-
+# name: debug
 # key: dbg
 # --
-require "ruby-debug"; debugger; 2+2
+require ` (let ((version (shell-command-to-string "rbenv version")))
+                (if (string-match-p "^2" version)
+                    (concat "'byebug';byebug;2+2")
+                  (concat "'ruby-debug';debugger;2+2")))
+        `
+$0
