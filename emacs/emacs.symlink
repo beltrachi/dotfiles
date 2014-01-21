@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr diff-hl yard-mode column-marker yasnippet)
+                 helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -168,3 +168,15 @@
                                '("~/.emacs.d/snippets")))
 
 (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+
+;; Ruby-block settings
+(require 'ruby-block)
+(ruby-block-mode t)
+
+;; do overlay
+(setq ruby-block-highlight-toggle 'overlay)
+;; display to minibuffer
+(setq ruby-block-highlight-toggle 'minibuffer)
+;; display to minibuffer and do overlay
+(setq ruby-block-highlight-toggle t)
+
