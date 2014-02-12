@@ -180,3 +180,8 @@
 ;; display to minibuffer and do overlay
 (setq ruby-block-highlight-toggle t)
 
+;; window navigation
+(global-set-key [s-left] 'windmove-left)
+(global-set-key [s-right] 'windmove-right)
+(global-set-key [s-up] 'windmove-up)
+(global-set-key [s-down] 'windmove-down)
