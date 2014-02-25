@@ -16,7 +16,8 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
-                 helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block)
+                 helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
+                 flycheck rubocop)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -185,3 +186,6 @@
 (global-set-key [s-right] 'windmove-right)
 (global-set-key [s-up] 'windmove-up)
 (global-set-key [s-down] 'windmove-down)
+
+;; flycheck and rubocop config
+(global-flycheck-mode t)
