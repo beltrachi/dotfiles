@@ -4,9 +4,9 @@ if [ "$UID" -ne 0 ]
   exit
 fi
 
-# TODO: run all setup.d scripts
-for file in setup.d/*.sh
+# run all setup.d scripts
+for file in ./setup.d/*.sh
 do
-  $config_file
+  bash $file
 done
 
