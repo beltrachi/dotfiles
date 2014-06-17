@@ -8,3 +8,7 @@ if [[ ! $(command -v vagrant) ]]; then
   dpkg -i /tmp/vagrant_1.6.2_x86_64.deb
 fi
 
+add-apt-repository -y ppa:chris-lea/node.js
+apt-get update
+apt-get install -y nodejs
+npm install coffee-script -g
