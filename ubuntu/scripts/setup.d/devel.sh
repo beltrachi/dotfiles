@@ -5,10 +5,11 @@ apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libyaml-dev
 
 if [[ ! $(command -v vagrant) ]]; then
-  wget -O /tmp/vagrant_1.4.0_x86_64.deb https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.0_x86_64.deb
-  dpkg -i /tmp/vagrant_1.4.0_x86_64.deb
+  wget -O vagrant_1.6.2_x86_64.deb https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.2_x86_64.deb
+  dpkg -i /tmp/vagrant_1.6.2_x86_64.deb
 fi
 
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install -y python-software-properties python g++ make nodejs
+add-apt-repository ppa:chris-lea/node.js
+apt-get update
+apt-get install -y python-software-properties python g++ make nodejs
+npm install coffee-script -g

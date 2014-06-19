@@ -17,7 +17,7 @@
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
                  helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
-                 flycheck rubocop)
+                 flycheck rubocop guru-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
