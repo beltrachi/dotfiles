@@ -1,2 +1,0 @@
-# Queue the dotfiles init once after rake is installed
-su -c "cd /home/vagrant/.dotfiles && ./script/bootstrap" vagrant
