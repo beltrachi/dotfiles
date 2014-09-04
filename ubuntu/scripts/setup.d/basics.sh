@@ -5,5 +5,10 @@ apt-get install -y git-core chromium-browser curl openssh-server pidgin \
 
 update-rc.d ssh defaults
 
+# Fix encoding issues on 14.04
+locale-gen en_US.UTF-8
+locale-gen es_ES.UTF-8
+dpkg-reconfigure locales
+
 # Uninstall Apport Error Reporting in Ubuntu
 apt-get purge apport
