@@ -4,6 +4,8 @@ apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libreadline6-dev redis-server imagemagick gitk nginx s3cmd \
   libyaml-dev libqt5webkit5-dev
 
+apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+
 if [[ ! $(command -v vagrant) ]]; then
   wget -O /tmp/vagrant_1.6.2_x86_64.deb https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.2_x86_64.deb
   dpkg -i /tmp/vagrant_1.6.2_x86_64.deb
