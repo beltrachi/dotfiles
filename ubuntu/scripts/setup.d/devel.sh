@@ -15,7 +15,7 @@ if [[ ! $(command -v vagrant) ]]; then
   fi
 fi
 
-add-apt-repository ppa:chris-lea/node.js
+add-apt-repository -y ppa:chris-lea/node.js
 apt-get update
 apt-get install -y python-software-properties python g++ make nodejs
 npm install coffee-script -g
