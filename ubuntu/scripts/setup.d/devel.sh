@@ -7,8 +7,12 @@ apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
 if [[ ! $(command -v vagrant) ]]; then
-  wget -O /tmp/vagrant_1.6.2_x86_64.deb https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.2_x86_64.deb
-  dpkg -i /tmp/vagrant_1.6.2_x86_64.deb
+  # Get last version available
+  LAST_URL=`curl https://dl.bintray.com/mitchellh/vagrant/ |grep -o "http.*.deb" |sort -V|tail -n 1`
+  if [[ -n "$LAST_URL" ]]; then
+      wget -O /tmp/vagrant_x86_64.deb $LAST_URL
+      dpkg -i /tmp/vagrant_x86_64.deb
+  fi
 fi
 
 add-apt-repository ppa:chris-lea/node.js
