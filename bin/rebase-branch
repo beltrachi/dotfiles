@@ -1,0 +1,19 @@
+#!/bin/bash
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+INTEGRATION="master"
+git diff  --exit-code
+if [ $? -ne 0 ]; then
+  HAS_STASH=1
+  echo "Stashing local changes..."
+fi
+git stash && git checkout $INTEGRATION && git pull && git checkout $BRANCH && git rebase $INTEGRATION 
+if [ $? -ne 0 ]; then
+  echo "Command failed. Not applying stash"
+else
+  if [ ! -z "$HAS_STASH" ]; then
+    git stash apply
+  else
+    echo "No stash to apply"
+  fi
+fi
+
