@@ -2,7 +2,7 @@
 apt-get install -y git-core chromium-browser curl openssh-server pidgin \
   build-essential indicator-multiload tree vim nautilus-dropbox \
   ttf-liberation vlc whois compizconfig-settings-manager \
-  pepperflashplugin-nonfree gparted compiz-plugins keepassx
+  pepperflashplugin-nonfree gparted compiz-plugins keepassx nethogs
 
 update-rc.d ssh defaults
 
