@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-if [ $(id -u) -ne 0 ] ; then echo "Please run as root" ; exit 1 ; fi
+if [ $(id -u) -ne 0 ] ; then
+    me=`readlink -f $0`
+    echo "You are not sudo. Sudoing..."
+    sudo $me ${@}
+    exit $? ;
+fi
 
 PROC_NAME=$1
 
@@ -14,16 +19,18 @@ while [ true ]; do
 
     TIMES_NOT_FOUND=$(($TIMES_NOT_FOUND + $RESULT))
 
-    if [ "$TIMES_NOT_FOUND" == "$TIMES_NOT_FOUND_REQUIRED" ]; then
-
-	# After waiting n times ... we can suspend
-        echo "No $PROC_NAME running."
-        echo "suspending ..."
-        sync
-        pm-suspend
-        exit
+    if [ "$RESULT" == "1" ]; then
+        echo "$PROC_NAME is not running."
+        if [ "$TIMES_NOT_FOUND" == "$TIMES_NOT_FOUND_REQUIRED" ]; then
+            echo "suspending ..."
+            sync
+            pm-suspend
+            exit
+        else
+            echo "$TIMES_NOT_FOUND times not found. Has to reach $TIMES_NOT_FOUND_REQUIRED"
+        fi
     else
-        echo "$PROC_NAME still running. $TIMES_NOT_FOUND times not found. Has to reach $TIMES_NOT_FOUND_REQUIRED"
+        echo "$PROC_NAME still running."
     fi
 
     sleep 60
