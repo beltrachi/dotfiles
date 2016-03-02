@@ -15,14 +15,15 @@ if [[ ! $(command -v vagrant) ]]; then
   fi
 fi
 
-add-apt-repository -y ppa:chris-lea/node.js
-apt-get update
-apt-get install -y python-software-properties python g++ make nodejs
+# Execute template created from
+# curl -sL https://deb.nodesource.com/setup_4.x > templates/nodesetup_4.sh
+# saved as a template to review first what it does.
+sudo ./templates/nodesetup_4.sh
 npm install coffee-script -g
 
 [ -e /usr/lib/apt/methods/https ] || {
   apt-get update
-  apt-get install apt-transport-https
+  apt-get install -y apt-transport-https
 }
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
