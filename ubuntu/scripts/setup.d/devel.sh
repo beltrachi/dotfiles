@@ -2,7 +2,7 @@
 apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libxslt-dev libxml2-dev qt-sdk libmysqlclient-dev libssl-dev libreadline6 \
   libreadline6-dev redis-server imagemagick gitk nginx s3cmd \
-  libyaml-dev libqt5webkit5-dev rhino sendmail
+  libyaml-dev libqt5webkit5-dev rhino sendmail xvfb
 
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
@@ -40,6 +40,15 @@ apt-get purge lxc-docker
 sudo apt-get install -y linux-image-extra-$(uname -r)
 sudo apt-get install -y docker-engine
 sudo service docker start
+
+# Start docker on boot
+sudo systemctl enable docker
+
+# Add machine users to docker group
+for USERNAME in $(ls /home/* -d  |grep -oE "([^/]*)$")
+do
+    sudo usermod -aG docker $USERNAME
+done
 
 curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
