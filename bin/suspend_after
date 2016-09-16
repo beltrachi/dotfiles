@@ -22,7 +22,7 @@ while [ true ]; do
     if [ "$RESULT" == "1" ]; then
         echo "$PROC_NAME is not running."
         if [ "$TIMES_NOT_FOUND" == "$TIMES_NOT_FOUND_REQUIRED" ]; then
-            echo "suspending ..."
+            echo "`date`: suspending ..."
             sync
             pm-suspend
             exit
