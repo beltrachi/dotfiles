@@ -1,6 +1,11 @@
 #!/bin/bash
 #
 # bootstrap installs things.
+if [[ $USER == "root" ]]; then
+	echo "Do no run in root mode. Exit sudo please."
+	exit 1
+fi
+
 echo "Installing source hook on profile and rc..."
 if [[ `grep dotfiles ~/.bashrc` == "" ]]; then
   echo "source ~/.dotfiles/load.sh" >> ~/.bashrc
