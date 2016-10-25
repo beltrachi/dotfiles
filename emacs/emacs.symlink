@@ -15,9 +15,9 @@
 (defvar prelude-packages
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
-                 yaml-mode yari yasnippet color-theme color-theme-solarized
+                 yaml-mode yari yasnippet solarized-theme
                  helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
-                 flycheck rubocop guru-mode)
+                 flycheck rubocop guru-mode projectile)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -44,24 +44,15 @@
 	      initial-major-mode 'text-mode
 	      default-major-mode 'text-mode)
 
-;; Ugly patch to make color-theme-solarized emacs24 comaptible
-(defun plist-to-alist (the-plist)
-  (defun get-tuple-from-plist (the-plist)
-    (when the-plist
-      (cons (car the-plist) (cadr the-plist))))
+;; load theme
+(load-theme 'solarized-dark t)
 
-  (let ((alist '()))
-    (while the-plist
-      (add-to-list 'alist (get-tuple-from-plist the-plist))
-      (setq the-plist (cddr the-plist)))
-  alist))
-
-;; Themes
-(require 'color-theme-solarized)
-(color-theme-solarized-dark)
+(projectile-global-mode)
+(setq projectile-indexing-method 'find)
+(global-set-key (kbd "M-p") 'projectile-find-file)
 
 ;; Smart file open hotkey - fiplr
-(global-set-key (kbd "M-p") 'fiplr-find-file)
+;(global-set-key (kbd "M-p") 'fiplr-find-file)
 
 ;; Backup config
 (setq
@@ -79,16 +70,20 @@
 (setq mode-require-final-newline nil)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
+ '(markdown-command "redcarpet")
+ '(package-selected-packages
+   (quote
+    (projectile guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;; No lock files. Useless if you edit with other editors or so.
@@ -115,16 +110,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;'(custom-enabled-themes (quote (deeper-blue)))
- ;'(default-frame-alist (quote ((height . 70) (width . 120))))
- '(markdown-command "redcarpet")
- ;'(markdown-open-command "/Users/loeffler/bin/mark")
-)
+
 
 ;; Ruby settings
 (add-to-list 'auto-mode-alist '("\\.rep\\'" . ruby-mode))
@@ -189,3 +175,4 @@
 
 ;; flycheck and rubocop config
 (global-flycheck-mode t)
+(put 'upcase-region 'disabled nil)
