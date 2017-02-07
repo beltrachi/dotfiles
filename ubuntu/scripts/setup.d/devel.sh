@@ -52,3 +52,8 @@ done
 
 curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
+
+# Set root password to ""
+echo "use mysql; "\
+"update user set authentication_string=password(''), plugin='mysql_native_password' where user='root';" | mysql -uroot --password=""
+service mysql restart
