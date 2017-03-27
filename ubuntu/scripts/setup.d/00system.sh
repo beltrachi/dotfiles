@@ -7,7 +7,8 @@ if [[ -n "$P530" ]]; then
 	sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_backlight=vendor"/' /etc/default/grub 
 	update-grub
 
- 	apt-get install nvidia-prime nvidia-361
+	# Disabled nvidia because it was giving problems after rebooting a fresh installation
+	# apt-get install -y nvidia-prime nvidia-361
 fi
 
 
