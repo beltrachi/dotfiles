@@ -3,5 +3,4 @@ sudo add-apt-repository ppa:ubuntu-elisp/ppa -y
 sudo apt-get update
 sudo apt-get install -y emacs-snapshot
 
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
+wget https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
