@@ -12,6 +12,7 @@ fi
 WHICH_RAKE=`which rake`
 if [ -n "$WHICH_RAKE" ] && [ ! -f ~/.dotfiles_installed ]; then
   echo "Installing dotfiles..."
+  cd ~/.dotfiles/
   rake install && touch ~/.dotfiles_installed
 else
   echo "Warning: No rake detected. Deferring installation."
