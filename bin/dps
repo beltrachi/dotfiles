@@ -5,7 +5,7 @@ DATA=$(docker ps)
 LIST=$(echo "$DATA" | grep -v "CONTAINER ID" | cut -d " " -f 1 )
 echo "$LIST" | while read c; do
   if [ -n "$c" ]; then
-    IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $c)
+    IP=$(docker inspect $c | grep IPAddress |grep -oE "[0-9]+(\.[0-9]+)+")
     # We echo only the line with the replacement
     echo "$DATA" | grep $c | sed -e "s/${c}/${c}\t${IP}/g" 
   fi

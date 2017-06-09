@@ -2,8 +2,10 @@
 # name: debug
 # key: dbg
 # --
-require ` (let ((version (shell-command-to-string "rbenv version")))
-                (if (string-match-p "^2" version)
+require ` (let ((version (shell-command-to-string "ruby -v")))
+                (if (string-match "ruby 2" version)
                     (concat "'byebug';byebug;2+2")
                   (concat "'ruby-debug';debugger;40+2")))
+
         `
+$0

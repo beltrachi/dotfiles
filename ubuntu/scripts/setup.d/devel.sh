@@ -2,7 +2,7 @@
 apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libxslt-dev libxml2-dev qt-sdk libmysqlclient-dev libssl-dev libreadline6 \
   libreadline6-dev redis-server imagemagick gitk nginx s3cmd \
-  libyaml-dev libqt5webkit5-dev rhino sendmail
+  libyaml-dev libqt5webkit5-dev rhino sendmail xvfb
 
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
@@ -27,25 +27,47 @@ rbenv global 2.1.2
 gem install bundler
 EOF
 
-exit 1
 # Nodejs
-add-apt-repository -y ppa:chris-lea/node.js
-apt-get update
-apt-get install -y python-software-properties python g++ make nodejs
+# Execute template created from
+# curl -sL https://deb.nodesource.com/setup_4.x > templates/nodesetup_4.sh
+# saved as a template to review first what it does.
+sudo ./templates/nodesetup_4.sh
 npm install coffee-script -g
 
 [ -e /usr/lib/apt/methods/https ] || {
   apt-get update
-  apt-get install apt-transport-https
+  apt-get install -y apt-transport-https
 }
 
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+# Docker
+apt-get update
+apt-get install -y apt-transport-https ca-certificates
 
-sh -c "echo deb https://get.docker.com/ubuntu docker main\
-> /etc/apt/sources.list.d/docker.list"
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+DISTRO=$(lsb_release -c -s)
+echo deb https://apt.dockerproject.org/repo ubuntu-$DISTRO main > /etc/apt/sources.list.d/docker.list
 
 apt-get update
-apt-get install lxc-docker
-# TODO: add user to docker group
+apt-get purge lxc-docker
+sudo apt-get install -y linux-image-extra-$(uname -r)
+sudo apt-get install -y docker-engine
+sudo service docker start
 
-curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+# Start docker on boot
+sudo systemctl enable docker
+
+# Add machine users to docker group
+for USERNAME in $(ls /home/* -d  |grep -oE "([^/]*)$")
+do
+    sudo usermod -aG docker $USERNAME
+done
+
+curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+# Set mysql root password to ""
+echo "use mysql; "\
+"update user set authentication_string=password(''), plugin='mysql_native_password' where user='root';" | mysql -uroot --password=""
+service mysql restart
+
