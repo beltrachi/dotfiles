@@ -17,7 +17,7 @@
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet color-theme color-theme-solarized
                  helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
-                 flycheck rubocop guru-mode)
+                 flycheck rubocop guru-mode projectile multiple-cursors )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -61,8 +61,14 @@
 (require 'color-theme-solarized)
 (color-theme-solarized-dark)
 
+;; Projectile
+(projectile-global-mode)
+;(setq projectile-indexing-method 'native)
+(setq projectile-indexing-method 'find)
+(setq projectile-use-git-grep nil)
+(global-set-key (kbd "M-p") 'projectile-find-file)
+
 ;; Smart file open hotkey - fiplr
-(global-set-key (kbd "M-p") 'fiplr-find-file)
 
 ;; Backup config
 (setq
@@ -80,16 +86,19 @@
 (setq mode-require-final-newline nil)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
+ '(package-selected-packages
+   (quote
+    (json-reformat guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm color-theme-solarized color-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;; No lock files. Useless if you edit with other editors or so.
@@ -116,16 +125,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;'(custom-enabled-themes (quote (deeper-blue)))
- ;'(default-frame-alist (quote ((height . 70) (width . 120))))
- '(markdown-command "redcarpet")
- ;'(markdown-open-command "/Users/loeffler/bin/mark")
-)
+
 
 ;; Ruby settings
 (add-to-list 'auto-mode-alist '("\\.rep\\'" . ruby-mode))
@@ -190,3 +190,8 @@
 
 ;; flycheck and rubocop config
 (global-flycheck-mode t)
+
+(setq js-indent-level 2)
+
+;; Stop inserting encoding utf on ruby
+(setq ruby-insert-encoding-magic-comment nil)
