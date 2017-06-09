@@ -1,0 +1,17 @@
+#!/bin/bash
+#set -o xtrace
+# Finds a branch with that name and checks it out
+BRANCH=$(git branch | grep $1 |tr "*" " ")
+NUM=$(echo "$BRANCH" | wc -l)
+
+if [ -z "$BRANCH" ]; then
+  echo "No branch matches"
+  exit 1
+fi
+
+if [ "$NUM" -eq 1 ]; then
+  git checkout $BRANCH
+else
+  echo "Several branches match:"
+  echo "$BRANCH"
+fi
