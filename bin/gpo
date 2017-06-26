@@ -5,3 +5,10 @@ if [ "$BRANCH" = "master" ]; then
   exit 1
 fi
 git push origin $BRANCH $@
+STATUS=$?
+
+if [ $STATUS == 0 ]; then
+  # Set origin to remote branch
+  git branch --set-upstream-to=origin/$BRANCH $BRANCH
+fi
+exit $STATUS

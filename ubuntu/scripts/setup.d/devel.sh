@@ -15,6 +15,19 @@ if [[ ! $(command -v vagrant) ]]; then
   fi
 fi
 
+# Install rbenv
+su -l `logname` <<'EOF'
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+source ~/.bashrc
+rbenv install 2.1.2
+rbenv global 2.1.2
+gem install bundler
+EOF
+
+# Nodejs
 # Execute template created from
 # curl -sL https://deb.nodesource.com/setup_4.x > templates/nodesetup_4.sh
 # saved as a template to review first what it does.
@@ -53,7 +66,8 @@ done
 curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-# Set root password to ""
+# Set mysql root password to ""
 echo "use mysql; "\
 "update user set authentication_string=password(''), plugin='mysql_native_password' where user='root';" | mysql -uroot --password=""
 service mysql restart
+

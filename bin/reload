@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "Do not run reload!!! this kills X and restarts it."
