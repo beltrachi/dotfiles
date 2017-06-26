@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "restart restarts the X server! dont run it if you are not sure. All applications will be closed"
