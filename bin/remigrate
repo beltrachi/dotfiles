@@ -1,0 +1,25 @@
+#!/bin/bash
+set -o xtrace
+
+if [ ! -d "db/migrate" ]; then
+  echo "Must be run inside a rails project"
+  exit 1
+fi
+
+MIGRATION_FILE=$(git diff --name-only master -- db/migrate)
+
+if [ -z "$MIGRATION_FILE" ]; then
+  echo "No migration file found. Did you git add it already?"
+  exit 2
+fi
+
+mv $MIGRATION_FILE "${MIGRATION_FILE}.disabled"
+
+git checkout master -- db/schema.rb
+
+RAILS_ENV=test bundle exec rake db:drop db:create db:schema:load
+
+mv "${MIGRATION_FILE}.disabled" ${MIGRATION_FILE}
+
+RAILS_ENV=test bundle exec rake db:migrate
+

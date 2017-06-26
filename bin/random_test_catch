@@ -1,0 +1,4 @@
+#!/bin/bash -xv
+
+
+while "${@:1}"; do :; done
