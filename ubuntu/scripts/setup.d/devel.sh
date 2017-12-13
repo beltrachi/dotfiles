@@ -2,7 +2,8 @@
 apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libxslt-dev libxml2-dev qt-sdk libmysqlclient-dev libssl-dev libreadline6 \
   libreadline6-dev redis-server imagemagick gitk nginx s3cmd \
-  libyaml-dev libqt5webkit5-dev rhino sendmail xvfb
+  libyaml-dev libqt5webkit5-dev rhino sendmail xvfb \
+  virtualbox-guest-additions-iso
 
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
