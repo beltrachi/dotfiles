@@ -94,6 +94,7 @@ brew "ack"
 brew "awscli"
 brew "bash"
 brew "bash-completion"
+brew "bash-git-prompt"
 brew "binutils"
 brew "coreutils"
 brew "diffutils"
@@ -208,5 +209,7 @@ fi
 
 # Install prelude emacs
 wget https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
+
+append_to_bashrc "source /usr/local/share/gitprompt.sh"
 
 fancy_echo "Don't forget to install your dotfiles!"
