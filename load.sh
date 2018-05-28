@@ -8,7 +8,6 @@ do
   if [[ $config_file = *"/ubuntu/"* ]]; then
     true # do nothing
   else
-    echo "Loading $config_file"
     source $config_file
   fi
 done
