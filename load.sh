@@ -5,7 +5,12 @@ fi
 
 for config_file in ~/.dotfiles/**/*.sh
 do
-  source $config_file
+  if [[ $config_file = *"/ubuntu/"* ]]; then
+    true # do nothing
+  else
+    echo "Loading $config_file"
+    source $config_file
+  fi
 done
 
 # use .localrc for SUPER SECRET CRAP that you don't
