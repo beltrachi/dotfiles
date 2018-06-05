@@ -213,6 +213,16 @@ fi
 # Install prelude emacs
 wget https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
 
+case "$SHELL" in
+  */bash) : ;;
+  *)
+    fancy_echo "Changing your shell to bash ..."
+    BASH_BIN_PATH=$(which bash)
+    echo $BASH_BIN_PATH >> /etc/shells
+      chsh -s "$BASH_BIN_PATH"
+    ;;
+esac
+
 append_to_bashrc "source /usr/local/share/gitprompt.sh"
 
 fancy_echo "Don't forget to install your dotfiles!"
