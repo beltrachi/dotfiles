@@ -16,7 +16,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet solarized-theme
-                 helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
+                 helm fiplr diff-hl yard-mode column-enforce-mode yasnippet ruby-block
                  flycheck rubocop guru-mode projectile multiple-cursors )
   "A list of packages to ensure are installed at launch.")
 
@@ -77,7 +77,7 @@
  '(markdown-command "redcarpet")
  '(package-selected-packages
    (quote
-    (json-reformat projectile guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
+    (json-reformat projectile guru-mode rubocop flycheck ruby-block yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -114,21 +114,9 @@
 ;; Ruby settings
 (add-to-list 'auto-mode-alist '("\\.rep\\'" . ruby-mode))
 
-;; Column marker
-(require 'column-marker)
-(set-face-background 'column-marker-1 "yellow")
-(dolist (hook '(emacs-lisp-mode-hook
-                cperl-mode-hook
-                shell-mode-hook
-                text-mode-hook
-                change-log-mode-hook
-                makefile-mode-hook
-                message-mode-hook
-                ruby-mode-hook
-                texinfo-mode-hook))
-  (add-hook hook (lambda ()
-                   (interactive)
-                   (column-marker-1 81))))
+;; Column enforce
+(global-column-enforce-mode t)
+(setq column-enforce-column 81)
 
 ;; Adapt font size to window size
 (defun fontify-frame (frame)
