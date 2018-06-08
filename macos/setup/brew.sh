@@ -96,6 +96,7 @@ brew "bash"
 brew "bash-completion"
 brew "bash-git-prompt"
 brew "binutils"
+brew "cmake"
 brew "coreutils"
 brew "diffutils"
 brew "fd"
@@ -222,6 +223,9 @@ case "$SHELL" in
       chsh -s "$BASH_BIN_PATH"
     ;;
 esac
+
+# Fix libffi gem compilation
+brew link libffi --force
 
 append_to_bashrc "source /usr/local/share/gitprompt.sh"
 
