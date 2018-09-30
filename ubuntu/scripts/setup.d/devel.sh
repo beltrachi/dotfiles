@@ -7,15 +7,6 @@ apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
 
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
-if [[ ! $(command -v vagrant) ]]; then
-  # Get last version available
-  LAST_URL=`curl https://dl.bintray.com/mitchellh/vagrant/ |grep -o "http.*.deb" |sort -V|tail -n 1`
-  if [[ -n "$LAST_URL" ]]; then
-      wget -O /tmp/vagrant_x86_64.deb $LAST_URL
-      dpkg -i /tmp/vagrant_x86_64.deb
-  fi
-fi
-
 # Install rbenv
 su -l `logname` <<'EOF'
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
