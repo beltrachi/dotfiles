@@ -1,9 +1,22 @@
 #!/usr/bin/env ruby
-# First arg is password length
-LEN = (ARGV[0] || 16).to_i
-txt = ""
-range = ('a'..'z').to_a + ('A'..'Z').to_a + (((0..9).to_a))
-LEN.times do
-  txt += range.sample.to_s
-end
-puts txt
+require 'optparse'
+
+options = { length: 32 }
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{__FILE__} [options]"
+
+  opts.on('-l LENGTH', 'Length of the password. Default is 32.') do |l|
+    options[:length] = l.to_i
+  end
+  opts.on('-b', '--basic', 'Use only numbers and letters') do
+    options[:basic] = true
+  end
+end.parse!
+
+# All ascii printable chars start at 33 and finish at 126.
+# Source: https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
+candidates = (33..126).to_a.map(&:chr)
+
+candidates = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a if options[:basic]
+
+puts candidates.sample(options[:length]).join
