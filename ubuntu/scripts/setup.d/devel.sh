@@ -42,21 +42,18 @@ npm install coffee-script -g
 
 # Docker
 apt-get update
-apt-get install -y apt-transport-https ca-certificates
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 DISTRO=$(lsb_release -c -s)
 echo deb https://apt.dockerproject.org/repo ubuntu-$DISTRO main > /etc/apt/sources.list.d/docker.list
 
-apt-get update
-apt-get purge lxc-docker
-sudo apt-get install -y linux-image-extra-$(uname -r)
-sudo apt-get install -y docker-engine
-sudo service docker start
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 
-# Start docker on boot
-sudo systemctl enable docker
+apt-get update
+apt-cache policy docker-ce
+sudo apt install docker-ce
 
 # Add machine users to docker group
 for USERNAME in $(ls /home/* -d  |grep -oE "([^/]*)$")
@@ -64,7 +61,7 @@ do
     sudo usermod -aG docker $USERNAME
 done
 
-curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # Set mysql root password to ""
