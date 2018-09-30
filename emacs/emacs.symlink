@@ -5,7 +5,6 @@
       "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 
 ;;; Install required packages
 (when (not package-archive-contents)
@@ -31,6 +30,12 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+
+;; Switch alt and ctrl keys for ubuntu mac-erized
+(if (eq system-type 'gnu/linux)
+    (progn
+      (setq x-ctrl-keysym 'meta)
+      (setq x-meta-keysym 'ctrl)))
 
 ;; General config
 (size-indication-mode t) ;; Show file size along with file position
@@ -77,7 +82,7 @@
  '(markdown-command "redcarpet")
  '(package-selected-packages
    (quote
-    (json-reformat projectile guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
+    (erlang elixir-yasnippets flycheck-elixir elixir-mode json-reformat projectile guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -175,7 +180,7 @@
 ;; flycheck and rubocop config
 (global-flycheck-mode t)
 
-(setq js-indent-level 2)
+(setq js-indent-level 4)
 
 ;; Stop inserting encoding utf on ruby
 (setq ruby-insert-encoding-magic-comment nil)
