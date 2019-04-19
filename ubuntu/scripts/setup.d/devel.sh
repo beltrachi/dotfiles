@@ -60,3 +60,7 @@ echo "use mysql; "\
 "update user set authentication_string=password(''), plugin='mysql_native_password' where user='root';" | mysql -uroot --password=""
 service mysql restart
 
+# Virtual box extended
+sudo usermod -a -G vboxusers $(whoami)
+# install extension pack (it needs user interaction)
+sudo apt-get install -y virtualbox-ext-pack

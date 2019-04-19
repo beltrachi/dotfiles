@@ -12,7 +12,7 @@
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
                  yaml-mode yari yasnippet solarized-theme
-                 helm fiplr diff-hl yard-mode column-marker yasnippet ruby-block
+                 helm fiplr diff-hl yard-mode column-enforce-mode yasnippet ruby-block
                  flycheck rubocop guru-mode projectile multiple-cursors )
   "A list of packages to ensure are installed at launch.")
 
@@ -67,7 +67,7 @@
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 ;; Do not add newlines at the end!
-(setq require-final-newline nil) 
+(setq require-final-newline nil)
 (setq mode-require-final-newline nil)
 
 (custom-set-variables
@@ -78,8 +78,7 @@
  '(inhibit-startup-screen t)
  '(markdown-command "redcarpet")
  '(package-selected-packages
-   (quote
-    (erlang elixir-yasnippets flycheck-elixir elixir-mode json-reformat projectile guru-mode rubocop flycheck ruby-block column-marker yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
+   '(clojure-mode coffee-mode column-marker deft diff-hl elixir-mode elixir-yasnippets erlang fiplr flx-ido flycheck flycheck-elixir gist guru-mode haml-mode haskell-mode helm json-reformat magit markdown-mode paredit projectile rubocop ruby-block sass-mode scss-mode solarized-theme sort-words yaml-mode yard-mode yari yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -116,21 +115,9 @@
 ;; Ruby settings
 (add-to-list 'auto-mode-alist '("\\.rep\\'" . ruby-mode))
 
-;; Column marker
-(require 'column-marker)
-(set-face-background 'column-marker-1 "yellow")
-(dolist (hook '(emacs-lisp-mode-hook
-                cperl-mode-hook
-                shell-mode-hook
-                text-mode-hook
-                change-log-mode-hook
-                makefile-mode-hook
-                message-mode-hook
-                ruby-mode-hook
-                texinfo-mode-hook))
-  (add-hook hook (lambda ()
-                   (interactive)
-                   (column-marker-1 81))))
+;; Column enforce
+(global-column-enforce-mode t)
+(setq column-enforce-column 81)
 
 ;; Adapt font size to window size
 (defun fontify-frame (frame)

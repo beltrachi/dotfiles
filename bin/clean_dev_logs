@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -vex
+
+LIST=$(ls ~/workspace/**/log/* ~/workspace/pub/**/log/*)
+
+echo "$LIST" | while read file ; do
+  # Truncate the file
+  echo "Truncating ${file}"
+  echo "" > $file
+done
+
+echo "All log files truncated successfully"
