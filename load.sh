@@ -5,7 +5,7 @@ fi
 
 for config_file in ~/.dotfiles/**/*.sh
 do
-  if [[ $config_file = *"/ubuntu/"* ]]; then
+  if [[ $config_file = *"/ubuntu/"* ]] || [[ $config_file = *"/macos/"* ]]; then
     true # do nothing
   else
     source $config_file
