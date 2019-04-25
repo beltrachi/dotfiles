@@ -1,5 +1,6 @@
 ;;; Package manager setup
-(require 'package)
+(package-initialize)
+
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
@@ -11,9 +12,9 @@
 (defvar prelude-packages
   '(flx-ido clojure-mode coffee-mode deft gist haml-mode
                  haskell-mode magit markdown-mode paredit sass-mode scss-mode
-                 yaml-mode yari yasnippet solarized-theme
+                 yaml-mode yafolding yari yasnippet solarized-theme
                  helm fiplr diff-hl yard-mode column-enforce-mode yasnippet ruby-block
-                 flycheck rubocop guru-mode projectile multiple-cursors )
+                 flycheck rubocop guru-mode projectile multiple-cursors lua-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p prelude-packages)
@@ -125,8 +126,8 @@
   (if window-system
       (progn
         (if (> (x-display-pixel-width) 1400)
-            () ;; Leave as is
-         (set-frame-parameter frame 'font "Monospace 9")))))
+            (set-frame-parameter frame 'font "Monospace 16")
+         (set-frame-parameter frame 'font "Monospace 14")))))
 
 ;; Fontify current frame
 (fontify-frame nil)
@@ -147,6 +148,11 @@
 ;; Ruby-block settings
 (require 'ruby-block)
 (ruby-block-mode t)
+
+(require 'yafolding)
+(add-hook 'ruby-mode-hook 'yafolding-mode)
+
+(global-set-key (kbd "M-RET")   'yafolding-toggle-element)
 
 ;; do overlay
 (setq ruby-block-highlight-toggle 'overlay)
@@ -170,3 +176,16 @@
 (setq ruby-insert-encoding-magic-comment nil)
 
 (put 'upcase-region 'disabled nil)
+
+; ;; Custom setup for macOS
+; (if
+;  (string-equal system-type "darwin")
+;  (setq mac-option-modifier nil
+;         mac-command-modifier 'super
+;         mac-option-modifier 'meta
+;         x-select-enable-clipboard t))
+
+(setq mac-option-key-is-meta nil)
+    (setq mac-command-key-is-meta t)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier nil)
