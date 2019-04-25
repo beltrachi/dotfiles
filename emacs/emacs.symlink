@@ -1,11 +1,7 @@
 ;;; Package manager setup
 (require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 
 ;;; Install required packages
 (when (not package-archive-contents)
@@ -31,6 +27,12 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+
+;; Switch alt and ctrl keys for ubuntu mac-erized
+(if (eq system-type 'gnu/linux)
+    (progn
+      (setq x-ctrl-keysym 'meta)
+      (setq x-meta-keysym 'ctrl)))
 
 ;; General config
 (size-indication-mode t) ;; Show file size along with file position
@@ -65,7 +67,7 @@
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 ;; Do not add newlines at the end!
-(setq require-final-newline nil) 
+(setq require-final-newline nil)
 (setq mode-require-final-newline nil)
 
 (custom-set-variables
@@ -76,8 +78,7 @@
  '(inhibit-startup-screen t)
  '(markdown-command "redcarpet")
  '(package-selected-packages
-   (quote
-    (json-reformat projectile guru-mode rubocop flycheck ruby-block yard-mode diff-hl fiplr helm solarized-theme yasnippet yari yaml-mode scss-mode sass-mode paredit markdown-mode magit haskell-mode haml-mode gist deft coffee-mode clojure-mode flx-ido))))
+   '(clojure-mode coffee-mode column-marker deft diff-hl elixir-mode elixir-yasnippets erlang fiplr flx-ido flycheck flycheck-elixir gist guru-mode haml-mode haskell-mode helm json-reformat magit markdown-mode paredit projectile rubocop ruby-block sass-mode scss-mode solarized-theme sort-words yaml-mode yard-mode yari yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -163,7 +164,7 @@
 ;; flycheck and rubocop config
 (global-flycheck-mode t)
 
-(setq js-indent-level 2)
+(setq js-indent-level 4)
 
 ;; Stop inserting encoding utf on ruby
 (setq ruby-insert-encoding-magic-comment nil)
