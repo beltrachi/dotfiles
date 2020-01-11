@@ -14,3 +14,6 @@ dpkg-reconfigure locales
 
 # Uninstall Apport Error Reporting in Ubuntu
 apt-get purge apport
+
+# To switch left ctrl with left alt (For MacOS keyb partial compatibility)
+apt-get install gnome-tweaks
