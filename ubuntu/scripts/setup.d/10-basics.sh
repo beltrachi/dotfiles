@@ -1,4 +1,5 @@
 #!/bin/bash
+
 apt-get install -y git-core chromium-browser curl openssh-server pidgin \
   build-essential indicator-multiload tree vim nautilus-dropbox \
   ttf-liberation vlc whois compizconfig-settings-manager \
@@ -16,4 +17,15 @@ dpkg-reconfigure locales
 apt-get purge apport
 
 # To switch left ctrl with left alt (For MacOS keyb partial compatibility)
-apt-get install gnome-tweaks
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lalt_lctl']"
+
+# Configure keys like macOS keyboard.
+SET_KB="gsettings set org.gnome.desktop.wm.keybindings"
+
+$SET_KB switch-applications "['<Primary>Tab']"
+$SET_KB switch-applications-backward "['<Primary><Shift>Tab']"
+
+$SET_KB switch-to-workspace-1 "['<Primary><Alt>less']"
+$SET_KB switch-to-workspace-2 "['<Primary><Alt>z']"
+$SET_KB switch-to-workspace-4 "['<Primary><Alt>c']"
+$SET_KB switch-to-workspace-3 "['<Primary><Alt>x']"
