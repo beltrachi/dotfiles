@@ -25,18 +25,6 @@ rbenv global 2.5.7
 gem install bundler
 EOF
 
-# Nodejs
-# Execute template created from
-# curl -sL https://deb.nodesource.com/setup_4.x > templates/nodesetup_4.sh
-# saved as a template to review first what it does.
-sudo ./templates/nodesetup_4.sh
-npm install coffee-script -g
-
-[ -e /usr/lib/apt/methods/https ] || {
-  apt-get update
-  apt-get install -y apt-transport-https
-}
-
 # Docker
 apt-get update
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
