@@ -27,26 +27,27 @@ EOF
 
 # Docker
 apt-get update
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+apt-get install -y \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
-DISTRO=$(lsb_release -c -s)
-echo deb https://apt.dockerproject.org/repo ubuntu-$DISTRO main > /etc/apt/sources.list.d/docker.list
-
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
 
 apt-get update
-apt-cache policy docker-ce
-sudo apt install docker-ce
+apt-get install -y docker-ce docker-ce-cli containerd.io
 
-# Add machine users to docker group
-for USERNAME in $(ls /home/* -d  |grep -oE "([^/]*)$")
-do
-    sudo usermod -aG docker $USERNAME
-done
+# Add user to docker group
+usermod -aG docker $SUDO_USER
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # Set mysql root password to ""
@@ -55,6 +56,6 @@ echo "use mysql; "\
 service mysql restart
 
 # Virtual box extended
-sudo usermod -a -G vboxusers $(whoami)
+usermod -a -G vboxusers $SUDO_USER
 # install extension pack (it needs user interaction)
-sudo apt-get install -y virtualbox-ext-pack
+apt-get install -y virtualbox-ext-pack
