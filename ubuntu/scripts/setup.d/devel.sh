@@ -5,17 +5,23 @@ apt-get install -y eatmydata virtualbox zlib1g-dev mysql-server git \
   libyaml-dev libqt5webkit5-dev rhino sendmail xvfb \
   virtualbox-guest-additions-iso
 
-apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+apt-get install -y libcurl3 libcurl3-gnutls
 
 # Install rbenv
 su -l `logname` <<'EOF'
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+ls ~/.rbenv || git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-source ~/.bashrc
-rbenv install 2.1.2
-rbenv global 2.1.2
+ls ~/.rbenv/plugins/ruby-build || \
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+EOF
+
+su -l `logname` <<'EOF'
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+rbenv install 2.5.7
+rbenv global 2.5.7
 gem install bundler
 EOF
 
