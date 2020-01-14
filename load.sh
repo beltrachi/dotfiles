@@ -12,6 +12,9 @@ do
   fi
 done
 
+# Load macos custom bash setup
+$(uname -a | grep Darwin > /dev/null) && . ~/.dotfiles/macos/bash_specifics.sh
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
