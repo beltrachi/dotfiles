@@ -1,6 +1,5 @@
-#!/bin/bash
-#
-# bootstrap installs things.
+#!/bin/bash -ex
+
 if [[ $USER == "root" ]]; then
 	echo "Do no run in root mode. Exit sudo please."
 	exit 1
@@ -8,18 +7,16 @@ fi
 
 echo "Installing source hook on profile and rc..."
 if [[ `grep dotfiles ~/.bashrc` == "" ]]; then
-  echo "source ~/.dotfiles/load.sh" >> ~/.bashrc
-  echo "source ~/.dotfiles/load.sh" >> ~/.bash_profile
-  source ~/.dotfiles/load.sh
+  PATH="$PATH:~/.dotfiles/bin"
+  append_text "source ~/.dotfiles/load.sh" ~/.bashrc
+  append_text "source ~/.dotfiles/load.sh" ~/.bash_profile
 fi
 
 # Run the install (I'd like to pull this out of rake, eventually)
-WHICH_RAKE=`which rake`
-if [ -n "$WHICH_RAKE" ] && [ ! -f ~/.dotfiles_installed ]; then
+if which rake && [ ! -f ~/.dotfiles_installed ]; then
   echo "Installing dotfiles..."
   cd ~/.dotfiles/
   rake install && touch ~/.dotfiles_installed
 else
   echo "Warning: No rake detected. Deferring installation."
 fi
-
