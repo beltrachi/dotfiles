@@ -118,7 +118,7 @@
 
 ;; Column enforce
 (global-column-enforce-mode t)
-(setq column-enforce-column 81)
+(setq column-enforce-column 90)
 
 ;; Adapt font size to window size
 (defun fontify-frame (frame)
