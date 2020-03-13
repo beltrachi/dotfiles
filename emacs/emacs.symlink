@@ -189,3 +189,10 @@
     (setq mac-command-key-is-meta t)
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier nil)
+
+;; multiple-cursors
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "s-SPC")       'set-rectangular-region-anchor)
+(global-set-key (kbd "H-SPC")       'set-rectangular-region-anchor)
