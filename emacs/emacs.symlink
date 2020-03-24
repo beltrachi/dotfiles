@@ -130,8 +130,8 @@
   (if window-system
       (progn
         (if (> (x-display-pixel-width) 1400)
-            (set-frame-parameter frame 'font "Monospace 16")
-         (set-frame-parameter frame 'font "Monospace 14")))))
+            (set-frame-parameter frame 'font "Monospace 10")
+         (set-frame-parameter frame 'font "Monospace 10")))))
 
 ;; Fontify current frame
 (fontify-frame nil)
