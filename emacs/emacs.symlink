@@ -174,8 +174,6 @@
 ;; flycheck and rubocop config
 (global-flycheck-mode t)
 
-(setq js-indent-level 4)
-
 ;; Stop inserting encoding utf on ruby
 (setq ruby-insert-encoding-magic-comment nil)
 
