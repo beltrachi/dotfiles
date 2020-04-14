@@ -20,6 +20,7 @@ brew "fzf"
 brew "gawk"
 brew "git"
 brew "git-cola"
+brew "git-gui"
 brew "gnu-indent", args: ["with-default-names"]
 brew "gnu-sed", args: ["with-default-names"]
 brew "gnu-tar", args: ["with-default-names"]
@@ -51,8 +52,9 @@ brew "rsync"
 brew "screen"
 brew "socat"
 brew "ssh-copy-id"
-brew "the_silver_searcher"
+brew "tcl-tk"
 brew "terminal-notifier"
+brew "the_silver_searcher"
 brew "tig"
 brew "tmux"
 brew "universal-ctags", args: ["HEAD"]
