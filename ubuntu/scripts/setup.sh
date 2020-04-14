@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Enable debugging to notice when some installation fails
+set -ex
+
 if [ "$UID" -ne 0 ]
   then echo "Please run as root"
   exit
