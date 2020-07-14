@@ -83,7 +83,8 @@
  '(js-indent-level 2)
  '(markdown-command "redcarpet")
  '(package-selected-packages
-   '(clojure-mode coffee-mode column-marker deft diff-hl elixir-mode elixir-yasnippets erlang fiplr flx-ido flycheck flycheck-elixir gist guru-mode haml-mode haskell-mode helm json-reformat magit markdown-mode paredit projectile rubocop ruby-block sass-mode scss-mode solarized-theme sort-words yaml-mode yard-mode yari yasnippet)))
+   (quote
+    (go-mode clojure-mode coffee-mode column-marker deft diff-hl elixir-mode elixir-yasnippets erlang fiplr flx-ido flycheck flycheck-elixir gist guru-mode haml-mode haskell-mode helm json-reformat magit markdown-mode paredit projectile rubocop ruby-block sass-mode scss-mode solarized-theme sort-words yaml-mode yard-mode yari yasnippet))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -129,8 +130,8 @@
   (interactive)
   (if window-system
       (progn
-        (if (> (x-display-pixel-width) 1400)
-            (set-frame-parameter frame 'font "Monospace 10")
+        (if (> (x-display-pixel-width) 1900)
+            (set-frame-parameter frame 'font "Monospace 14")
          (set-frame-parameter frame 'font "Monospace 10")))))
 
 ;; Fontify current frame
