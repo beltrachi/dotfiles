@@ -92,6 +92,7 @@ cask "vagrant"
 cask "vanilla"
 cask "viber"
 cask "vlc"
+cask "vscodium"
 cask "xquartz"
 cask "zoomus"
 
