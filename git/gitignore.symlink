@@ -4,3 +4,4 @@ nbproject
 .byebug_history
 vendor/
 .env
+.vscode
