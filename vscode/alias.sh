@@ -5,23 +5,13 @@
 #   e ~/.bashrc     # Opens bashrc
 #   e               # Opens current directory
 
-# Mac vscodium binary is code
-if which vscode 2>&1 > /dev/null; then
-  true # Nothing to do.
-else
-  if which code 2>&1 > /dev/null; then
-    vscode () { code $@; }
-  elif which codium 2>&1 > /dev/null; then
-    vscode () { codium $@; }
-  fi
-fi
-
 e () {
   echo $1
+  CODIUM_BIN=$(which vscode codium code | head -n 1)
   if [[ -z $@ ]]; then
     # Opens cwd by default
-    vscode . &
+    $CODIUM_BIN . &
   else
-    vscode $@ &
+    $CODIUM_BIN $@ &
   fi
 }
