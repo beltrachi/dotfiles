@@ -9,7 +9,7 @@ JOB_UUID="7c0fe164-9162-40dd-86b4-d8e804735aac"
 CRON_USER=$SUDO_USER
 CRON_WRAPPER="/home/${CRON_USER}/.dotfiles/bin/desktop-cron-wrapper"
 
-CRON_TIME="03 23 * * * "
+CRON_TIME="08 * * * * "
 
 COMMAND="bash -l -c '$CRON_WRAPPER /home/${CRON_USER}/.config/backups/backup-check.sh'"
 
