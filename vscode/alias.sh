@@ -6,10 +6,14 @@
 #   e               # Opens current directory
 
 # Mac vscodium binary is code
-if $(which vscode 2> /dev/null); then
+if which vscode 2>&1 > /dev/null; then
   true # Nothing to do.
 else
-  vscode () { code $@; }
+  if which code 2>&1 > /dev/null; then
+    vscode () { code $@; }
+  elif which codium 2>&1 > /dev/null; then
+    vscode () { codium $@; }
+  fi
 fi
 
 e () {

@@ -1,0 +1,24 @@
+#!/bin/bash
+# Wrapper to run cron jobs and give feedback via desktop interface.
+# Responsabilities:
+#  - Notify the user if something goes wrong
+#  - Set DISPLAY variable in case the cron needs to show windows
+#  - Load user env variables.
+
+set -e
+
+# TODO: do not hardcode those values.
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+TMP_LOG_FILE=$(mktemp /tmp/desktop-cron-wrapper-XXXXXXXXXXXX.log)
+
+set +e
+$@ > $TMP_LOG_FILE 2>&1
+RESULT=$?
+set -e
+
+if [ "$RESULT" -gt 0 ]; then
+  ERROR_TEXT="Cron job has returned error.\nJob task: $@ \nCheck $TMP_LOG_FILE log file."
+  zenity --width=400 --error --text="$ERROR_TEXT"
+fi
