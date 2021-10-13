@@ -1,7 +1,7 @@
 #!/bin/bash
 BRANCH=`git rev-parse --abbrev-ref HEAD`
-if [ "$BRANCH" = "master" ]; then
-  echo "Master branch are disabled. Do it with the full command \"git push origin ...\""
+if [[ "$BRANCH" = "master" || "$BRANCH" = "main" ]]; then
+  echo "Main branch pushes are disabled. Do it with the full command \"git push origin ...\""
   exit 1
 fi
 git push origin $BRANCH $@
