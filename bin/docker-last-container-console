@@ -1,0 +1,3 @@
+#!/bin/bash -ex
+
+docker exec -it $(last_container) bash
