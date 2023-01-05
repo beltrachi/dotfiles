@@ -1,0 +1,14 @@
+#!/bin/bash
+set -ex
+
+SERVICE=$(/usr/bin/ruby -r yaml -e "puts YAML.load_file('docker-compose.yml')['services'].keys.first")
+
+docker-compose up -d
+
+RUN_COMMAND="docker-compose run --use-aliases -v $HOME/.docker_bash_history:/root/.bash_history $SERVICE"
+
+if $RUN_COMMAND which /bin/bash ; then
+  $RUN_COMMAND /bin/bash
+else
+  $RUN_COMMAND /bin/sh
+fi

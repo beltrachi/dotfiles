@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ex
+
+docker run -it -v $PWD:/app ruby:$(cat .ruby-version) bash -c 'cd /app; exec "${SHELL:-sh}"' 
