@@ -1,16 +1,15 @@
-#!/bin/bash
+#!/bin/bash -ex
 
-# Enable debugging to notice when some installation fails
-set -ex
-
-if [ "$UID" -ne 0 ]
-  then echo "Please run as root"
+if [ "$UID" -e 0 ]
+  then echo "Please run as regular user"
   exit
 fi
 
 # run all setup.d scripts
 for file in ./setup.d/*.sh
 do
-  bash $file
+  echo "Executing $file"
+  bash -x $file
 done
 
+sudo apt autoremove -y

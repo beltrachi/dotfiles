@@ -1,2 +1,2 @@
-#!/bin/bash
-sudo apt-get install -y edubuntu-fonts ubuntustudio-fonts fonts-oxygen ttf-xfree86-nonfree
+#!/bin/bash -ex
+sudo apt-get install -y ubuntustudio-fonts fonts-oxygen ttf-xfree86-nonfree

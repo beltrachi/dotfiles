@@ -1,4 +1,3 @@
-#!/bin/bash
+#!/bin/bash -ex
 
-apt-get install -y gimp vlc inkscape cheese brasero flashplugin-nonfree \
-    blender exiftags
+sudo apt-get install -y gimp vlc inkscape cheese blender

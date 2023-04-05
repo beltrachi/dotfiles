@@ -1,7 +1,6 @@
-#!/bin/bash
-set -e
+#!/bin/bash -ex
 
-apt-get install -y zenity
+sudo apt-get install -y zenity
 
 # Randomly generated uuidv4 to make sure its our job.
 JOB_UUID="7c0fe164-9162-40dd-86b4-d8e804735aac"

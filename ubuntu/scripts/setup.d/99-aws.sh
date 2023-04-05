@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html
-apt-get install python-pip -y
-pip install awscli --ignore-installed six
+sudo apt-get install -y python3-pip
+sudo pip install awscli --ignore-installed six
 
