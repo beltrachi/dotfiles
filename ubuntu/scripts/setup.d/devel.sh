@@ -51,11 +51,6 @@ sudo usermod -aG docker $SUDO_USER
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Set mysql root password to ""
-echo "use mysql; "\
-"update user set authentication_string=password(''), plugin='mysql_native_password' where user='root';" | mysql -uroot --password=""
-sudo service mysql restart
-
 # Virtual box extended
 sudo usermod -a -G vboxusers $SUDO_USER
 # install extension pack (it needs user interaction)
