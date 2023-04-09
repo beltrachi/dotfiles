@@ -1,3 +1,3 @@
 #!/bin/bash -ex
 
-sudo apt-get install -y spotify-client
+sudo snap install spotify
