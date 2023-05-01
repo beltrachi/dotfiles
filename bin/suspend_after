@@ -24,7 +24,7 @@ while [ true ]; do
         if [ "$TIMES_NOT_FOUND" == "$TIMES_NOT_FOUND_REQUIRED" ]; then
             echo "`date`: suspending ..."
             sync
-            pm-suspend
+            systemctl suspend
             exit
         else
             echo "$TIMES_NOT_FOUND times not found. Has to reach $TIMES_NOT_FOUND_REQUIRED"
