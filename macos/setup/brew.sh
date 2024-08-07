@@ -113,9 +113,6 @@ if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
 fi
 
-# Install prelude emacs
-wget https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
-
 case "$SHELL" in
   */bash) : ;;
   *)

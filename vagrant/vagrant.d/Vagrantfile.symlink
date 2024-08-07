@@ -1,3 +1,0 @@
-Vagrant::Config.run do |config|
-  config.ssh.forward_agent = true
-end
