@@ -14,12 +14,6 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 ls ~/.rbenv/plugins/ruby-build || \
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-set -ex
-rbenv install -s 2.7.6
-gem install bundler
-
 # Virtual box extended
 sudo usermod -a -G vboxusers $USERNAME
 # install extension pack (it needs user interaction)
