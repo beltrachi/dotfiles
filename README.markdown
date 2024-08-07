@@ -19,3 +19,19 @@ You'll also want to change `git/gitconfig.symlink`, which will set you up as
 committing as me. You probably don't want that.
 
 Read Holman README for more info: https://github.com/holman/dotfiles
+
+## Setup
+
+Compilation of commands to run when I'm getting my laptop ready.
+
+Usage:
+```
+cd ubuntu/setup
+./setup.sh
+```
+
+For macOS:
+```
+cd macos/setup
+./setup.sh
+```
