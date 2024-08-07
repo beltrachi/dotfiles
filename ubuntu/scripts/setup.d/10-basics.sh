@@ -17,8 +17,10 @@ sudo dpkg-reconfigure locales
 sudo apt-get purge apport
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+mkdir -p ~/.config/dconf
 # Load preferences like keyboard shortcuts etc.
 dconf load / < ${DIR}/dconf.config
 
-# Update config for multiload
-dconf load /de/mh21/indicator-multiload/ < ${DIR}/dconf/indicator-multiload.conf
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
