@@ -1,3 +1,3 @@
 #!/bin/bash -ex
 
-sudo flatpak install -y logseq
+sudo snap install -y logseq

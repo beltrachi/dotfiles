@@ -8,10 +8,6 @@ sudo apt-get install -y git chromium-browser curl openssh-server pidgin \
 
 sudo update-rc.d ssh defaults
 
-# Install flatpak
-sudo apt install flatpak -y
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 # Fix encoding issues on 14.04
 sudo locale-gen en_US.UTF-8
 sudo locale-gen es_ES.UTF-8
