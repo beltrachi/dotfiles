@@ -14,7 +14,7 @@ sudo locale-gen es_ES.UTF-8
 sudo dpkg-reconfigure locales
 
 # Uninstall Apport Error Reporting in Ubuntu
-sudo apt-get purge apport
+sudo apt-get purge -y apport
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 

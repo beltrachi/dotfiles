@@ -19,4 +19,5 @@ sudo usermod -a -G vboxusers $USERNAME
 # install extension pack (it needs user interaction)
 sudo apt-get install -y virtualbox-ext-pack
 
-snap install codium --classic
+# Install vscode
+snap install code --classic

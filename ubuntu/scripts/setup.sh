@@ -13,3 +13,5 @@ do
 done
 
 sudo apt autoremove -y
+
+echo "Finished ubuntu setup. Congratulations\!"
