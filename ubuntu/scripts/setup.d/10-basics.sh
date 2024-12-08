@@ -1,10 +1,14 @@
 #!/bin/bash -ex
 
-sudo apt-get install -y git chromium-browser curl openssh-server pidgin \
+sudo apt-get update
+sudo apt-get install -y git curl openssh-server pidgin \
   build-essential tree vim nautilus-dropbox \
   vlc whois compizconfig-settings-manager \
   gparted compiz-plugins keepassx nethogs \
   iftop network-manager-vpnc-gnome iotop
+
+# Dotfiles Rakefile dependency
+sudo apt-get install -y rake
 
 sudo update-rc.d ssh defaults
 

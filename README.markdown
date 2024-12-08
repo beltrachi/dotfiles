@@ -9,6 +9,12 @@ Run this:
 ```sh
 git clone https://github.com/beltrachi/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+```
+
+If you are installing a new OS, use the custom Ubuntu/MacOS setup described in Setup chapter,
+**before** running `script/bootstrap`.
+
+```sh
 script/bootstrap
 ```
 
@@ -26,7 +32,7 @@ Compilation of commands to run when I'm getting my laptop ready.
 
 Usage:
 ```
-cd ubuntu/setup
+cd ubuntu/scripts
 ./setup.sh
 ```
 
