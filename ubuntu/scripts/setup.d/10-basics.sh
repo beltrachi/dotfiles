@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
 sudo apt-get update
-sudo apt-get install -y git curl openssh-server pidgin \
+sudo apt-get install -y git curl pidgin \
   build-essential tree vim nautilus-dropbox \
   vlc whois compizconfig-settings-manager \
   gparted compiz-plugins keepassx nethogs \
